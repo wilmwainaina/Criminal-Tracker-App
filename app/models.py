@@ -1,4 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 
 db = SQLAlchemy()
@@ -18,18 +22,18 @@ class Crime(db.Model):
     name = db.Column(db.String(64), nullable=False)
     description = db.Column(db.String(255), nullable=False)
     victims = db.relationship('Victim', back_populates='crimes') # tis is a one to many relationship
-    suspects = db.relationship('Suspect',
+    criminals = db.relationship('Criminal',
                             back_populates='crimes')
 
 
-class Suspect(db.Model):
-    __tablename__ ='suspect'
+class Criminal (db.Model):
+    __tablename__ ='criminal'
 
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), nullable=False)
     crimes = db.relationship('Crime',
-                          back_populates='suspects')
+                          back_populates='criminals')
 
 
 

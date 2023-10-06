@@ -29,9 +29,11 @@
  align-items: center;
    }
 }
+
 body{
     height: max-content;
-    background-color: #718096;
+    background-color: #4a5568;
+    
 }
 
 .sidebar {
@@ -121,6 +123,41 @@ body{
  cursor: pointer;
 }
 
+/* Sidebar styles */
+.sidebar {
+  width: 7rem;
+  background-color: #333;
+  color: white;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
 
+/* Main content styles */
+.main-content {
+  margin-left: 7rem; /* Adjust margin to match the sidebar width */
+  padding: 2rem;
+}
 
+/* Crime table styles */
+.table-container {
+  margin-top: 2rem;
+}
 
+.table-header {
+  background-color: #333;
+  color: white;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.table-data {
+  padding: 0.5rem;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Optional: Hover effect on table rows */
+.table-data:hover {
+  background-color: #f2f2f2;
+}

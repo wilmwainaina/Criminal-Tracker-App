@@ -24,9 +24,9 @@ const SideBar = () => {
     <a href="/form">form</a>
     </li>
     <li
-      className={location.pathname === "/list"}>
+      className={location.pathname === "/crimetables"}>
         <HiClipboard size={iconSize} className=""/>
-    <a href="/list">list</a>
+    <a href="/crimetables">tables</a>
     </li>
    
   </ul>

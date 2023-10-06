@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Form from './pages/Form';
-import List from './pages/List';
+import List from './pages/CrimeTable';
 import SideBar from './components/SideBar';
 
 
