@@ -14,9 +14,9 @@ migrate = Migrate(app, db)
 db.init_app(app)
 
 users = {
-    'hamida': {
-        'username': "hamida",
-        'password': 'mids123',
+    'adam':{
+        'username': "adam",
+        'password':'kelly123',
         'role': ['user']
     }
 }
@@ -27,9 +27,10 @@ def login():
         username = request.json['username']
         password = request.json['password']
 
-    if username in users and users['hamida']['password'] == password:
-        access_token = create_access_token(identity=username)
-        return jsonify(access_token=access_token), 200
+
+    if username in users and users['adam']['password'] == password:
+      access_token = create_access_token(identity=username)
+      return jsonify(access_token=access_token), 200
     else:
         return jsonify(message='Invalid username or password'), 401
 
@@ -100,5 +101,5 @@ def handle_victim(id):
         return jsonify({"result": True})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5000, debug=True)
 
