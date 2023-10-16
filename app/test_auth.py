@@ -1,6 +1,5 @@
 import unittest
 import app
-from models import Crime, Victim, Suspect
 # create a class that displays the test results carri out 
 
 

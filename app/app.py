@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request, abort
 from flask_jwt_extended import jwt_required, JWTManager, create_access_token
-from models import db, Crime, Criminal, Victim  # Replaced 'Suspect' with 'Criminal'
+from models import db, Crime, Criminal,  Victim  # Replaced 'Criminal' with 'Criminal'
 from flask_migrate import Migrate
 
 app = Flask(__name__)
@@ -21,52 +21,64 @@ users = {
     }
 }
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    token = []
     if request.is_json:
         username = request.json['username']
         password = request.json['password']
+    
 
-
-    if username in users and users['adam']['password'] == password:
-      access_token = create_access_token(identity=username)
-      return jsonify(access_token=access_token), 200
-    else:
+        if username in users and users['adam']['password'] == password:
+            access_token = create_access_token(identity=username)
+            print(access_token)
+            token.append(access_token)
+            return jsonify(access_token=access_token), 200
         return jsonify(message='Invalid username or password'), 401
+        
+    # return jsonify(message='Invalid input'), 200
+    return jsonify(token=token), 200
+
+
+@app.route('/home', methods=['GET'])
+def home():
+    return jsonify(message='Welcome to Crime API'), 200
+
+
 
 @app.route('/crimes', methods=['GET'])
-@jwt_required
+@jwt_required()
 def get_crimes():
     crimes = Crime.query.all()
     return jsonify([crime.serialize for crime in crimes])
 
 # Criminal routes
-@app.route('/criminals', methods=['GET'])  # Replaced '/suspects' with '/criminals'
-def get_criminals():  # Replaced 'get_suspects' with 'get_criminals'
-    criminals = Criminal.query.all()  # Replaced 'Suspect' with 'Criminal'
-    return jsonify([criminal.serialize for criminal in criminals])  # Replaced 'suspect' with 'criminal'
+@app.route('/criminals', methods=['GET'])  # Replaced '/Criminals' with '/criminals'
+def get_criminals():  # Replaced 'get_Criminals' with 'get_criminals'
+    criminals = Criminal.query.all()  # Replaced 'Criminal' with 'Criminal'
+    return jsonify([criminal.serialize for criminal in criminals])  # Replaced 'Criminal' with 'criminal'
 
-@app.route('/criminals', methods=['POST'])  # Replaced '/suspects' with '/criminals'
-def post_criminal():  # Replaced 'post_suspect' with 'post_criminal'
+@app.route('/criminals', methods=['POST'])  # Replaced '/Criminals' with '/criminals'
+def post_criminal():  # Replaced 'post_Criminal' with 'post_criminal'
     if not request.json or 'name' not in request.json:
         abort(400)
-    criminal = Criminal(name=request.json['name'])  # Replaced 'Suspect' with 'Criminal'
+    criminal = Criminal(name=request.json['name'])  # Replaced 'Criminal' with 'Criminal'
     db.session.add(criminal)
     db.session.commit()
-    return jsonify(criminal.serialize), 201  # Replaced 'suspect' with 'criminal'
+    return jsonify(criminal.serialize), 201  # Replaced 'Criminal' with 'criminal'
 
-@app.route('/criminals/<int:id>', methods=['GET', 'PUT', 'DELETE'])  # Replaced '/suspects' with '/criminals'
-def handle_criminal(id):  # Replaced 'handle_suspect' with 'handle_criminal'
-    criminal = Criminal.query.get(id)  # Replaced 'Suspect' with 'Criminal'
+@app.route('/criminals/<int:id>', methods=['GET', 'PUT', 'DELETE'])  # Replaced '/Criminals' with '/criminals'
+def handle_criminal(id):  # Replaced 'handle_Criminal' with 'handle_criminal'
+    criminal = Criminal.query.get(id)  # Replaced 'Criminal' with 'Criminal'
     if request.method == 'GET':
-        return jsonify(criminal.serialize)  # Replaced 'suspect' with 'criminal'
+        return jsonify(criminal.serialize)  # Replaced 'Criminal' with 'criminal'
     elif request.method == 'PUT':
         if 'name' in request.json:
-            criminal.name = request.json['name']  # Replaced 'suspect' with 'criminal'
+            criminal.name = request.json['name']  # Replaced 'Criminal' with 'criminal'
         db.session.commit()
-        return jsonify(criminal.serialize)  # Replaced 'suspect' with 'criminal'
+        return jsonify(criminal.serialize)  # Replaced 'Criminal' with 'criminal'
     elif request.method == 'DELETE':
-        db.session.delete(criminal)  # Replaced 'suspect' with 'criminal'
+        db.session.delete(criminal)  # Replaced 'Criminal' with 'criminal'
         db.session.commit()
         return jsonify({"result": True})
 

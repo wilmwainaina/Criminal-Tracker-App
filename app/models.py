@@ -11,7 +11,7 @@ db = SQLAlchemy()
 
 
 class Crime(db.Model):
-    __tablename__ = 'crime'
+    __tablename__ = 'crimes'
 
 
     id = db.Column(db.Integer, primary_key=True)
@@ -22,20 +22,20 @@ class Crime(db.Model):
                             back_populates='crimes')
 
 
-class Suspect(db.Model):
-    __tablename__ ='suspect'
+class Criminal(db.Model):
+    __tablename__ ='criminal'
 
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), nullable=False)
     crimes = db.relationship('Crime',
-                          back_populates='suspects')
+                          back_populates='criminals')
 
 
 
 
 class Victim(db.Model):
-    __tablename__ = 'victim'
+    __tablename__ = 'victims'
 
 
     id = db.Column(db.Integer, primary_key=True)
