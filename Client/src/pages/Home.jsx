@@ -21,17 +21,6 @@ function Home() {
               entities, providing a centralized platform to store, retrieve, and analyze criminal records efficiently.
            </p>
           <br></br>
-          <div className='typed'>
-          <p>
-            WE ARE FOR
-          </p>
-          <Typed
-          className=''
-           strings={['safety', 'security', 'care']}
-            typespeed={100}
-             backSpeed={110}
-              loop/>
-              <br></br>
         
           </div>
             <p>we are for you</p>
@@ -56,7 +45,7 @@ function Home() {
       </div>
       
          </div>
-      </div>
+      
       
     
   )

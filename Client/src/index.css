@@ -11,28 +11,23 @@
   margin: 7rem;
   justify-content: center;
   padding-left: 0.5rem;
-  padding-top: 4rem; /* Adjust padding as needed */
+  
   padding-bottom: 4rem;
   padding-left: 1rem; /* Adjust padding as needed */
   padding-right: 1rem;
+ 
 }
 
-.typed{
- @media (min-width: 768px) {
-   .md-text-5xl   { 
-       font-size: 3rem;}
- font-size: 1.25rem;
- font-weight: bold;
- padding-left: 0.5rem;
- align-items: center;
- justify-content: center;
- align-items: center;
-   }
+.title{
+  text-size-adjust: 10;
 }
+
+
+
 
 body{
     height: max-content;
-    background-color: #4a5568;
+    background-color: #b7b7b7;
     
 }
 
@@ -134,30 +129,7 @@ body{
   top: 0;
 }
 
+.test{
+  color: #333;
+}
 /* Main content styles */
-.main-content {
-  margin-left: 7rem; /* Adjust margin to match the sidebar width */
-  padding: 2rem;
-}
-
-/* Crime table styles */
-.table-container {
-  margin-top: 2rem;
-}
-
-.table-header {
-  background-color: #333;
-  color: white;
-  padding: 0.5rem;
-  text-align: left;
-}
-
-.table-data {
-  padding: 0.5rem;
-  border-bottom: 1px solid #ccc;
-}
-
-/* Optional: Hover effect on table rows */
-.table-data:hover {
-  background-color: #f2f2f2;
-}

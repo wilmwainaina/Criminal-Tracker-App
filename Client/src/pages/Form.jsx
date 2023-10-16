@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 
 function Form({ onSubmitForm }) {
   const [formData, setFormData] = useState({
-    criminalName: '',
-    dateOfArrest: '',
-    crimeCommitted: '',
-    officerInCharge: '',
-    officerId: ''
+    criminal: '',
+    crimes: '',
+    victims: '',
   });
 
   const handleSubmit = (e) => {
@@ -15,7 +13,7 @@ function Form({ onSubmitForm }) {
     alert('Submitted');
 
     // Send form data to the Flask API using fetch
-    fetch('http://127.0.0.1:5000/api/crimes', {
+    fetch('http://127.0.0.1:5000', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -30,11 +28,9 @@ function Form({ onSubmitForm }) {
       
       // Optionally, you can reset the form after successful submission
       setFormData({
-        criminalName: '',
-        dateOfArrest: '',
-        crimeCommitted: '',
-        officerInCharge: '',
-        officerId: ''
+        criminal: '',
+        crimes: '',
+        victims: '',
       });
     })
     .catch(error => console.error('Error submitting crime data:', error));
@@ -54,11 +50,11 @@ function Form({ onSubmitForm }) {
         <form onSubmit={handleSubmit}>
           <div>
             <label>
-              Criminal Name:
+              Criminal:
               <input
                 type="text"
-                name="criminalName"
-                value={formData.criminalName}
+                name="criminal"
+                value={formData.criminal}
                 onChange={handleInputChange}
                 required
               />
@@ -66,11 +62,11 @@ function Form({ onSubmitForm }) {
           </div>
           <div>
             <label>
-              Date Of Arrest:
+              Crimes:
               <input
                 type="text"
-                name="dateOfArrest"
-                value={formData.dateOfArrest}
+                name="crimes"
+                value={formData.crimes}
                 onChange={handleInputChange}
                 required
               />
@@ -78,40 +74,17 @@ function Form({ onSubmitForm }) {
           </div>
           <div>
             <label>
-              Crime Committed:
+              Victims:
               <input
                 type="text"
-                name="crimeCommitted"
-                value={formData.crimeCommitted}
+                name="victims"
+                value={formData.victims}
                 onChange={handleInputChange}
                 required
               />
             </label>
           </div>
-          <div>
-            <label>
-              Officer in Charge:
-              <input
-                type="text"
-                name="officerInCharge"
-                value={formData.officerInCharge}
-                onChange={handleInputChange}
-                required
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              Officer id:
-              <input
-                type="text"
-                name="officerId"
-                value={formData.officerId}
-                onChange={handleInputChange}
-                required
-              />
-            </label>
-          </div>
+         
           <button type="submit">Submit</button>
         </form>
       </div>

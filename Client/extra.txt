@@ -1,0 +1,368 @@
+import React from 'react'
+
+
+function Form() {
+  return (
+    
+<div className='form-container'>
+    <div className='form'>
+    
+      <form className=''>
+    
+    <div className=''>
+      <label>
+        Criminal Name :   
+        <input
+          className=''
+          type="text"
+          placeholder='    Enter criminal name'
+        />
+      </label>
+    </div>
+
+    <div>
+      <label className=''>
+        Date Of Arrest:
+        <input
+          type="text"
+          className=''
+          placeholder='     Enter your Email'
+          required
+        />
+      </label>
+    </div>
+
+    <div>
+    <label className=''>
+
+        Crime Commited:
+        <input
+          type="text" 
+          className=''
+          placeholder='    Enter your phone no.'
+          required
+        />
+      </label>
+    </div>
+
+    <div>
+      <label >
+        Officer in Charge:
+        <input
+          className=''
+          type="text"
+          placeholder='   Enter criminal name'
+          required
+        />
+      </label>
+    </div>
+
+    <div>
+      <label >
+        Officer id:
+        <input
+          className=''
+          type="text"
+          placeholder='     Enter criminal name'
+          required
+        />
+      </label>
+    </div>
+
+
+    <button
+    type="submit" 
+    className=''>
+               Submit
+    </button>
+   </form> 
+
+  
+
+   
+    </div>
+    
+    
+    </div>
+  )
+}
+
+export default Form;
+
+
+
+import React, { useState, useEffect } from 'react';
+
+
+
+function CrimeTable({ crimes }) {
+  const [crimes, setCrimes] = useState([]);
+
+  useEffect(() => {
+    // Fetch data from the Flask server when the component mounts
+    fetch('http://127.0.0.1:5000/api/crimes')
+      .then(response => response.json())
+      .then(data => setCrimes(data))
+      .catch(error => console.error('Error fetching crime data:', error));
+  }, []); // Empty dependency array ensures the effect runs once after the initial render
+
+  return (
+    <div className='table-container'> {/* Apply the table-container class */}
+      <h2 className='table-header'>Crime Data Table</h2> {/* Apply the table-header class */}
+      <table>
+        <thead>
+          <tr>
+            <th className='table-header'>ID</th> {/* Apply the table-header class */}
+            <th className='table-header'>Name</th> {/* Apply the table-header class */}
+            <th className='table-header'>Description</th> {/* Apply the table-header class */}
+            <th className='table-header'>Victims</th> {/* Apply the table-header class */}
+            <th className='table-header'>Criminals</th> {/* Apply the table-header class */}
+          </tr>
+        </thead>
+        <tbody>
+          {crimes.map(crime => (
+            <tr key={crime.id}>
+              <td className='table-data'>{crime.id}</td> {/* Apply the table-data class */}
+              <td className='table-data'>{crime.name}</td> {/* Apply the table-data class */}
+              <td className='table-data'>{crime.description}</td> {/* Apply the table-data class */}
+              <td className='table-data'>{crime.victims.map(victim => victim.name).join(', ')}</td> {/* Apply the table-data class */}
+              <td className='table-data'>{crime.criminals.map(criminal => criminal.name).join(', ')}</td> {/* Apply the table-data class */}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export default CrimeTable;
+
+
+
+
+
+import React from 'react';
+
+function CrimeTable({ crimes }) {
+  const crimeList = crimes || []; // Handle undefined or null prop by defaulting to an empty array
+
+  return (
+   
+    <div className='table-container'>
+       <div className='test'><p>vhsdfbhjdvbhj nxcv hjfdvhjbsdvhjdc 
+        nxch jv hjsdbjh sdnbcxbhbvhdsbhfsdvb nc ncvjh b h
+        jsdbhfvsbhfvbhfnbvndvbhashbvhnsdfv nfbshvbhsbfvhbd</p></div>
+      <h2 className='table-header'>Crime Data Table</h2>
+      <table>
+        <thead>
+          <tr>
+            <th className='table-header'>ID</th>
+            <th className='table-header'>Name</th>
+            <th className='table-header'>Description</th>
+            <th className='table-header'>Victims</th>
+            <th className='table-header'>Criminals</th>
+          </tr>
+        </thead>
+        <tbody>
+          {crimeList.length > 0 ? (
+            crimeList.map(crime => (
+              <tr key={crime.id}>
+                <td className='table-data'>{crime.id}</td>
+                <td className='table-data'>{crime.name}</td>
+                <td className='table-data'>{crime.description}</td>
+                <td className='table-data'>{crime.victims.map(victim => victim.name).join(', ')}</td>
+                <td className='table-data'>{crime.criminals.map(criminal => criminal.name).join(', ')}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td className='table-data' colSpan='5'>No crimes available</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export default CrimeTable;
+
+
+import React from "react";
+import { HiHome, HiPlus, HiClipboard} from "react-icons/hi";
+
+
+const iconSize = 40;
+
+
+const SideBar = () => {
+  return (
+    
+ <div className="conatiner">
+
+  <div className="sidebar">
+    
+  <ul className="">
+
+    <li
+      className={location.pathname === "/home"}>
+        <HiHome  size={iconSize} className=""/>
+    <a href="/">home</a>
+    </li>
+
+    <li
+      className={location.pathname === "/form"}>
+        <HiPlus size={iconSize} className=""/>
+    <a href="/form">form</a>
+    </li>
+
+    <li
+      className={location.pathname === "/tables"}>
+        <HiClipboard size={iconSize} className=""/>
+    <a href="/tables">tables</a>
+    </li>
+   
+  </ul>
+
+  </div>
+ </div>
+  );
+};
+
+export default SideBar;
+
+
+import React, { useState, useEffect } from 'react';
+
+function Tables() {
+  const [crimes, setCrimes] = useState([]);
+
+  useEffect(() => {
+    async function fetchCrimeData() {
+      try {
+        const response = await fetch('http://127.0.0.1:5000/api/crimes');
+        const data = await response.json();
+        setCrimes(data); // Set the fetched data to the state
+      } catch (error) {
+        console.error('Error fetching crime data:', error);
+      }
+    }
+
+    fetchCrimeData();
+  }, []); // Empty dependency array ensures the effect runs once after the initial render
+
+  return (
+    <div className='table-container'>
+      <h2 className='table-header'>Crime Data Table</h2>
+      <table>
+        <thead>
+          <tr>
+            <th className='table-header'>ID</th>
+            <th className='table-header'>Name</th>
+            <th className='table-header'>Description</th>
+            <th className='table-header'>Victims</th>
+            <th className='table-header'>Criminals</th>
+          </tr>
+        </thead>
+        <tbody>
+          {crimes.length > 0 ? (
+            crimes.map(crime => (
+              <tr key={crime.id}>
+            <td className={`table-data ${crime.id ? 'has-id' : ''}`}>{crime.id}</td>
+            <td className={`table-data ${crime.id ? 'has-id' : ''}`}>{crime.id}</td>
+            <td className={`table-data ${crime.name ? 'has-name' : ''}`}>{crime.name}</td>
+            <td className={`table-data ${crime.description ? 'has-description' : ''}`}>{crime.description}</td>
+            <td className="table-data">{crime.victims.map(victim => victim.name).join(', ')}</td>
+            <td className="table-data">{crime.criminals.map(criminal => criminal.name).join(', ')}</td>
+
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td className='table-data' colSpan='5'>No crimes available</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export default Tables;
+
+
+
+.main-content {
+  color: black;
+  background-color: #2563eb;
+  margin-left: 7rem; /* Adjust margin to match the sidebar width */
+  padding: 2rem;
+}
+
+.table-container {
+  color: black;
+  background-color: #2563eb;
+  padding-left: 7rem;
+  margin-top: 2rem;
+  overflow-x: auto; /* Add horizontal scrollbar if table overflows */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.table-header {
+  background-color: #333;
+  color: white;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.table-data {
+  padding: 0.75rem;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Optional: Hover effect on table rows */
+.table-data:hover {
+  background-color: #f2f2f2;
+}
+
+/* Responsive table styles */
+@media (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .table-data,
+  .table-header {
+    min-width: 100px; /* Set a minimum width for table cells */
+  }
+}
+
+.typed{
+ @media (min-width: 768px) {
+  .md-text-5xl   { 
+       font-size: 3rem;}
+ font-size: 1.25rem;
+ font-weight: bold;
+ padding-left: 0.5rem;
+ align-items: center;
+ justify-content: center;
+ align-items: center;
+   }
+
+     <p>
+            WE ARE FOR
+          </p>
+          <Typed
+          className=''
+           strings={['safety', 'security', 'care']}
+            typespeed={100}
+             backSpeed={110}
+              loop/>
+              <br></br>

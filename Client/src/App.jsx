@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Form from './pages/Form';
-import List from './pages/CrimeTable';
+import Tables from './pages/Tables';
 import SideBar from './components/SideBar';
-
+import ParentComponent from './components/ParentComponent'
 
 function App() {
   return (
@@ -16,8 +16,8 @@ function App() {
 
                <Route path="/" element={<Home />} />
                <Route path="/form" element={<Form />} />
-               <Route path="/list" element={<List />} />
-               
+               <Route path="/list" element={<Tables />} />
+               <Route path="/parent" element={<ParentComponent />} /> {/* Add a new route */}
                </Routes>
           
         </div>

@@ -1,6 +1,6 @@
 import React from 'react'
-import Form from './Form'; // Import your Form component
-import CrimeTable from './CrimeTable'; // Import your CrimeTable component
+import Form from '../pages/Form'; // Import your Form component
+import Tables from '../pages/Tables'; // Import your CrimeTable component
 
 
 function ParentComponent() {
@@ -15,7 +15,7 @@ function ParentComponent() {
        {/* Render the Form component and pass the handleFormSubmit function as a prop */}
        <Form onSubmitForm={handleFormSubmit} />
       {/* Render the CrimeTable component and pass the crimes data as a prop */}
-      <CrimeTable crimes={crimes} />
+      <Tables crimes={crimes} />
     </div>
   )
 }

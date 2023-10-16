@@ -1,13 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 const colors = require('tailwindcss/colors')
 module.exports = {
-  content: [],
+  content: [
+    './src/**/*.html',
+    './src/**/*.jsx',
+  ],
   theme: {
     extend: {
       colors: {
         primary: '#202225',
         secondary: '#5865f2',
-        gray: colors.trueGray,
+        neutral: colors.trueGray,
         gray: {
          900: '#202225',
          800: '#2f3136',

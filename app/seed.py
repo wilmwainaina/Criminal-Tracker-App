@@ -1,4 +1,4 @@
-from models import Crime, Suspect, Victim, db
+from models import Crime, Criminal, Victim, db
 from app import db
 
 def add_crime(name, description):
@@ -9,10 +9,10 @@ def add_crime(name, description):
 
 
 
-def add_suspect(name):
-    suspect = Suspect(name=name)
-    db.session.add(suspect)
-    return suspect
+def add_criminal(name):
+    criminal = Criminal (name=name)
+    db.session.add(criminal)
+    return criminal
 
 def add_victim(name):
     victim = Victim(name=name)
@@ -37,12 +37,12 @@ crime5 = add_crime("Homicide", "Murder of 3 or more people in a club ")
 
 
 
-suspect1 = add_suspect("Mickey Williams")
+criminal1 = add_criminal("Mickey Williams")
 
 
 victim1 = add_victim("Adam Kelly")
 
-suspect1.crimes.append(crime1)
+criminal1.crimes.append(crime1)
 
 
 victim1.crimes.append(crime1)

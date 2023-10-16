@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request, abort
 from flask_jwt_extended import jwt_required, JWTManager, create_access_token
-from models import db, Crime, Criminal, Victim  # Replaced 'Suspect' with 'Criminal'
+from models import db, Crime, Criminal, Victim  
 from flask_migrate import Migrate
 
 app = Flask(__name__)
@@ -14,9 +14,9 @@ migrate = Migrate(app, db)
 db.init_app(app)
 
 users = {
-    'hamida': {
-        'username': "hamida",
-        'password': 'mids123',
+    'wilfred': {
+        'username': "wilfred",
+        'password': 'fred123',
         'role': ['user']
     }
 }
@@ -27,14 +27,14 @@ def login():
         username = request.json['username']
         password = request.json['password']
 
-    if username in users and users['hamida']['password'] == password:
+    if username in users and users['wilfred']['password'] == password:
         access_token = create_access_token(identity=username)
         return jsonify(access_token=access_token), 200
     else:
         return jsonify(message='Invalid username or password'), 401
 
 @app.route('/crimes', methods=['GET'])
-@jwt_required
+
 def get_crimes():
     crimes = Crime.query.all()
     return jsonify([crime.serialize for crime in crimes])
@@ -100,5 +100,5 @@ def handle_victim(id):
         return jsonify({"result": True})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
 

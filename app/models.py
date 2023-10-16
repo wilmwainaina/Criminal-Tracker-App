@@ -1,3 +1,4 @@
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
@@ -15,7 +16,7 @@ db = SQLAlchemy()
 
 
 class Crime(db.Model):
-    __tablename__ = 'crime'
+    __tablename__ = 'crimes'
 
 
     id = db.Column(db.Integer, primary_key=True)
