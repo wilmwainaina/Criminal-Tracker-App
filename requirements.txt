@@ -1,3 +1,6 @@
+flask==1.0.2
+requests==2.22.0
+
 Usage: pipenv lock [OPTIONS]
 
   Generates Pipfile.lock.
