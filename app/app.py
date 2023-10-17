@@ -2,10 +2,12 @@ from flask import Flask, jsonify, request, abort
 from flask_jwt_extended import jwt_required, JWTManager, create_access_token
 from models import db, Crime, Criminal, Victim  
 from flask_migrate import Migrate
+import os
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = '111222333444555666'
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///criminal_db"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+# postgres://criminal_trackerapp_user:aOjL9XtHGNl55G3T5Dzp1fYc4sGX4FCe@dpg-ckn25iiv7m0s739ld9k0-a.oregon-postgres.render.com/criminal_trackerapp
 
 jwt = JWTManager(app)
 migrate = Migrate(app, db)
