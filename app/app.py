@@ -56,7 +56,7 @@ def get_crimes():
 @app.route('/criminals', methods=['GET'])  # Replaced '/Criminals' with '/criminals'
 def get_criminals():  # Replaced 'get_Criminals' with 'get_criminals'
     criminals = Criminal.query.all()  # Replaced 'Criminal' with 'Criminal'
-    return jsonify([criminal.serialize for criminal in criminals])  # Replaced 'Criminal' with 'criminal'
+    return jsonify(message='Welcome to Crime API'), 200
 
 @app.route('/criminals', methods=['POST'])  # Replaced '/Criminals' with '/criminals'
 def post_criminal():  # Replaced 'post_Criminal' with 'post_criminal'
